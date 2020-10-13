@@ -1,8 +1,9 @@
 body{
-  margin: auto;
-  width: 100%;
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
   border: 3px solid green;
-  padding: 10px;
+  
 }
 
 header {
@@ -74,7 +75,7 @@ footer {
 }
 
 #results {
-  width: 250px;
+  width: 25%;
   background-color: rebeccapurple;
   float: left;
 }
@@ -96,19 +97,19 @@ footer {
 
 #image-one {
   place-self: center;
-  width: 300px;
+  width: 32%;
   border: 1px solid black;
 }
 
 #image-two {
   place-self: center;
-  width: 300px;
+  width: 32%;
   border: 1px solid black;
 }
 
 #image-three {
   place-self: center;
-  width: 300px;
+  width: 32%;
   border: 1px solid black;
 }
 
