@@ -1,0 +1,122 @@
+body{
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  border: 3px solid green;
+  
+}
+
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid black;
+  height: 70px;
+}
+#title{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid black;
+  width: 250px;
+}
+
+#nav-bar{
+  text-align: center;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  /* border: 1px solid black; */
+}
+
+#nav1{
+  height: 75%;
+  width: 75%;
+  border: 1px solid black;
+  justify-self: center;
+  align-self: center;
+  
+}
+
+#nav2{
+  height: 75%;
+  width: 75%;
+  border: 1px solid black;
+  justify-self: center;
+  align-self: center;
+}
+
+#nav3{
+  height: 75%;
+  width: 75%;
+  border: 1px solid black;
+  justify-self: center;
+  align-self: center;
+}
+
+#nav4{
+  height: 75%;
+  width: 75%;
+  border: 1px solid black;
+  justify-self: center;
+  align-self: center;
+}
+
+
+
+main {
+  margin-top: 20px;
+  position: relative;
+  border: 1px solid red;
+  width: 100%;
+}
+
+footer {
+  height: 100px;
+  border: 1px solid blue;
+}
+
+#results {
+  width: 25%;
+  background-color: rebeccapurple;
+  float: left;
+}
+
+#content{
+  display: grid;
+  grid-template-rows: max-content;
+}
+
+#image-container {
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  grid-auto-flow: row;
+  background-color: rgb(70, 8, 18);
+  border: 1px solid black;
+  width: 100%;
+  
+}
+
+#image-one {
+  place-self: center;
+  width: 32%;
+  border: 1px solid black;
+}
+
+#image-two {
+  place-self: center;
+  width: 32%;
+  border: 1px solid black;
+}
+
+#image-three {
+  place-self: center;
+  width: 32%;
+  border: 1px solid black;
+}
+
+#vote {
+  justify-self: center;
+  background-color: red;
+  width: 600px;
+  border: 1px solid black;
+}
+
