@@ -1,17 +1,24 @@
 'use strict';
 
-var allProducts = [];
 var imageOneElement = document.getElementById('image-one');
 var imageTwoElement = document.getElementById('image-two');
 var imageThreeElement = document.getElementById('image-three');
-var imageContainer = document.getElementById('image-container');
+// var imageContainer = document.getElementById('image-container');
+var allProducts = [];
 var recentRandomNumbers = [];
+var totalVotes = 0;
+var xChartProductName = [];
+var yChartData = [];
+
+
 
 function Product(filepath, productName){
   this.filepath = filepath;
   this.name = productName;
+  this.views = 0;
   this.votes = 0;
-
+  // xChartProductName.push(name);
+  xChartProductName.push(this.name);
   allProducts.push(this);
 }
 
@@ -48,20 +55,19 @@ function render(imageElement){
   imageElement.alt = allProducts[randomIndex].name;
   imageElement.title = allProducts[randomIndex].name;
 
-  recentRandomNumbers = [];
+  allProducts[randomIndex].views++;
+
+  if(recentRandomNumbers.length > 5){
+    recentRandomNumbers.shift();
+  }
   recentRandomNumbers.push(randomIndex);
-
-
 }
 
 function getRandomNumber(min, max){
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-imageContainer.addEventListener('click', function(event){
-  render(imageOneElement);
-  render(imageTwoElement);
-  render(imageThreeElement);
+function handleClick(event){
 
   var chosenProduct = event.target.title;
 
@@ -72,8 +78,73 @@ imageContainer.addEventListener('click', function(event){
     }
   }
 
-});
+  render(imageOneElement);
+  render(imageTwoElement);
+  render(imageThreeElement);
+
+  totalVotes++;
+  if(totalVotes >= 25){
+    document.getElementById('image-container').removeEventListener('click', handleClick);
+    //display results
+    var resultsElement = document.getElementById('results');
+    for(var j = 0; j < allProducts.length; j++){
+      var liElement = document.createElement('li');
+      liElement.textContent = `${allProducts[j].name} was seen ${allProducts[j].views} times.`;
+      resultsElement.appendChild(liElement);
+      yChartData.push(allProducts[j].votes);
+      // console.log(yChartData);
+      renderChart();
+    }
+  }
+}
+
+//can also be called w/out the global var with document.getElementById('image-container').addEventListener('click', handleClick)
+document.getElementById('image-container').addEventListener('click', handleClick);
+
 
 render(imageOneElement);
 render(imageTwoElement);
 render(imageThreeElement);
+
+function renderChart(){
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: xChartProductName, // products go here
+      datasets: [{
+        label: 'And the winner is....', // this is my title
+        data: yChartData, // number of votes
+        // backgroundColor: [ 
+        //   'rgba(255, 255, 255, 0.2)',
+        //   'rgba(54, 162, 235, 0.2)',
+        //   'rgba(255, 206, 86, 0.2)',
+        //   'rgba(75, 192, 192, 0.2)',
+        //   'rgba(153, 102, 255, 0.2)',
+        //   'rgba(255, 159, 64, 0.2)'
+        // ],
+        // borderColor: [
+        //   'rgba(44, 44, 44, 1)',
+        //   'rgba(54, 162, 235, 1)',
+        //   'rgba(255, 206, 86, 1)',
+        //   'rgba(75, 192, 192, 1)',
+        //   'rgba(153, 102, 255, 1)',
+        //   'rgba(255, 159, 64, 1)'
+        // ],
+        borderWidth: 6
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
+
+// console.log(`this is the ${this.event.allProducts}`);
