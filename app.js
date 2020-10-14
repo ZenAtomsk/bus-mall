@@ -116,7 +116,7 @@ function renderChart(){
       datasets: [{
         label: 'And the winner is....', // this is my title
         data: yChartData, // number of votes
-        // backgroundColor: [ 
+        // backgroundColor: [
         //   'rgba(255, 255, 255, 0.2)',
         //   'rgba(54, 162, 235, 0.2)',
         //   'rgba(255, 206, 86, 0.2)',
