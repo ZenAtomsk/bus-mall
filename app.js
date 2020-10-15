@@ -10,6 +10,9 @@ var totalVotes = 0;
 var xChartProductName = [];
 var yChartData = [];
 
+// console.log('1. my all products array:', allProducts);
+// // var stringifyProducts = JSON.stringify(allProducts);
+// console.log('2. my all products array as JSON:', stringifyProducts);
 
 
 function Product(filepath, productName){
@@ -21,6 +24,8 @@ function Product(filepath, productName){
   xChartProductName.push(this.name);
   allProducts.push(this);
 }
+
+
 
 new Product('img/bag.jpg', 'bag');
 new Product('img/banana.jpg', 'banana');
@@ -68,6 +73,8 @@ function getRandomNumber(min, max){
 }
 
 function handleClick(event){
+  var productsFromLocalStorage = localStorage.getItem('stringifyProducts');
+  var parsedProducts = JSON.parse(productsFromLocalStorage);
 
   var chosenProduct = event.target.title;
 
@@ -83,6 +90,8 @@ function handleClick(event){
   render(imageThreeElement);
 
   totalVotes++;
+
+
   if(totalVotes >= 25){
     document.getElementById('image-container').removeEventListener('click', handleClick);
     //display results
@@ -94,7 +103,12 @@ function handleClick(event){
       yChartData.push(allProducts[j].votes);
       // console.log(yChartData);
       renderChart();
+      var stringifyProducts = JSON.stringify(allProducts[j].votes);
+      console.log('2. my all products array as JSON:', stringifyProducts);
+      localStorage.setItem('products', stringifyProducts);
     }
+    // var stringifyProducts = JSON.stringify(allProducts);
+    // console.log('2. my all products array as JSON:', stringifyProducts);
   }
 }
 
