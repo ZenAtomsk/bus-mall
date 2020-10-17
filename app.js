@@ -32,7 +32,7 @@ if(!localStorage.getItem('products')){
   var parsedProducts = JSON.parse(productsFromLocalStorage);
 
   for(var i = 0; i< parsedProducts.length; i++){
-    new Product(parsedProducts[i].src, parsedProducts[i].name, parsedProducts[i].views, parsedProducts[i].votes);
+    new Product(parsedProducts[i].filepath, parsedProducts[i].name, parsedProducts[i].views, parsedProducts[i].votes);
   }
   productList();
 }
